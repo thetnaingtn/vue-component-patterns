@@ -9,14 +9,7 @@
       <span class="form-label mb-2">Newsletter</span>
       <div class="flex justify-between items-center">
         <p class="mr-4">Send you occasional news and updates.</p>
-        <span
-          class="toggle flex-no-shrink"
-          role="checkbox"
-          tabindex="0"
-          @click="toggleNewsletter"
-          @keydown.space.prevent="toggleNewsletter"
-          :aria-checked="receiveNewsletter.toString()"
-        ></span>
+        <Toggle v-model:receiveNewsletter="receiveNewsletter" />
       </div>
     </div>
     <div class="text-right">
@@ -26,7 +19,11 @@
 </template>
 
 <script>
+import Toggle from "./Toggle";
 export default {
+  components: {
+    Toggle,
+  },
   props: [],
   data() {
     return {
@@ -40,10 +37,6 @@ export default {
         email: this.email,
         receiveNewsletter: this.receiveNewsletter,
       });
-    },
-
-    toggleNewsletter() {
-      this.receiveNewsletter = !this.receiveNewsletter;
     },
   },
 };
